@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mentana - La entrada a tu mente sana.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --accent-primary: #56dbc4;
+      --accent-secondary: #00bcd4;
+      --text-light: #e0e0e0;
+      --bg-gradient-start: #23bcd7;
+      --bg-gradient-end: #112244;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --main-bg-alpha: rgba(255, 255, 255, 0.1);
+      --font-family: 'Poppins', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background: linear-gradient(to right, var(--bg-gradient-start), var(--bg-gradient-end));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      color: #fff;
+	  
+    }
+
+    .contenedor-principal-adaptado {
+      background: var(--main-bg-alpha);
+      padding: 30px;
+      border-radius: 12px;
+      width: 95%;
+      max-width: 500px;
+      backdrop-filter: blur(10px);
+      overflow-y: auto;
+      max-height: 95vh;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+    }
+
+    .seccion-logo img {
+      max-width: 100px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .tarjeta-contenido-principal,
+    .tarjeta-contenido-secundario {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #fff;
+    }
+
+    .carousel-container {
+      position: relative;
+      width: 100%;
+    }
+
+    .carousel-cards {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      gap: 20px;
+      padding: 20px 0;
+      -webkit-overflow-scrolling: touch;
+      width: 100%;
+    }
+
+    .carousel-cards::-webkit-scrollbar {
+      display: none;
+    }
+
+    .card {
+      flex: 0 0 100%;
+      max-width: 100%;
+      scroll-snap-align: center;
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .card h3 {
+      color: var(--accent-primary);
+      margin-bottom: 10px;
+      font-size: 1.2em;
+    }
+
+    .card p {
+      color: var(--text-light);
+      font-size: 0.95em;
+    }
+
+    .carousel-nav-buttons {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .triangulo-izquierdo,
+    .triangulo-derecho {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent-secondary);
+      cursor: pointer;
+      user-select: none;
+      line-height: 1;
+      padding: 10px;
+      pointer-events: auto;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 50%;
+    }
+
+    .carousel-indicators {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+    }
+
+    .indicator.active {
+      background-color: var(--accent-primary);
+    }
+
+    h2 {
+      font-size: 1.2em;
+      margin-top: 0px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+
+    a.btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+    }
+
+    a.btn-primary {
+      background: var(--accent-primary);
+      color: #141e30;
+    }
+
+    a.btn-primary:hover {
+      background: #56dbc4;
+      color: #fff;
+    }
+
+    a.btn-secondary {
+      background: transparent;
+      border: 2px solid var(--accent-primary);
+      color: var(--accent-primary);
+    }
+
+    a.btn-secondary:hover {
+      background: var(--accent-primary);
+      color: #141e30;
+    }
+
+    .botones-accion {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .botones-accion a {
+      flex: 1;
+      min-width: 0;
+      padding: 12px 0;
+      font-weight: bold;
+      font-size: 14px;
+      border-radius: 30px;
+      text-align: center;
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="contenedor-principal-adaptado">
+    <div class="seccion-logo">
+      <img src="salud-mental.png" alt="Logo Mentana" />
+    </div>
+
+    <h2>Descubre tu<br>Perfil Emocional Preliminar</h2>
+
+    <div class="tarjeta-contenido-principal">
+        <div class="carousel-container">
+            <div class="carousel-cards" id="carrusel-principal">
+                <div class="card"><h3>Datos importantes</h3><p>7 de cada 10 personas en Chile declaran haber tenido alguna enfermedad o problema psicológico.</p></div>
+                <div class="card"><h3>Datos importantes</h3><p>El 47% de las personas que necesitó ver a un profesional del área no lo hizo por falta de financiamiento.</p></div>
+                <div class="card"><h3>Datos importantes</h3><p>El 17.5% de las mujeres ha sufrido algún trastorno de ansiedad en su vida, frente al 9.5% de los hombres.</p></div>
+                <div class="card"><h3>Datos importantes</h3><p>Un 75% de las personas entre 22 y 35 años reporta haber tenido alguna enfermedad o problema psicológico.</p></div>
+                <div class="card"><h3>Datos importantes</h3><p>El 58.3% de los trabajadores chilenos percibió algún tipo de estrés laboral.</p></div>
+                <div class="card"><h3>Datos importantes</h3><p>El 26.6% del rango de edad de 30 a 39 años percibe una mayor soledad.</p></div>
+                <div class="card"><h3>Datos importantes</h3><p>El 53.8% de las personas con problemas de insomnio evidenció síntomas moderados o severos de depresión.</p></div>
+            </div>
+        </div>
+        <div class="carousel-indicators" id="indicators-principal"></div>
+    </div>
+	
+
+    <p>Estamos construyendo el futuro del bienestar emocional.<br><strong>Únete al viaje.</strong></p>
+
+    <div class="botones-accion">
+      <a href="registro.html" class="btn btn-primary">Regístrate</a>
+      <a href="login.html" class="btn btn-secondary">Inicia Sesión</a>
+    </div>
+
+    <div class="tarjeta-contenido-secundario">
+        <div class="carousel-container">
+            <div class="carousel-cards" id="carrusel-secundario">
+              <div class="card"><h3>Match Inteligente</h3><p>Conectamos a cada persona con el profesional ideal según sus síntomas, perfil y contexto personal.</p></div>
+			  <div class="card"><h3>Atención 360°</h3><p>Presencia en todas las etapas: antes, durante y después del proceso terapéutico.</p></div>
+			  <div class="card"><h3>Quiz Especializados</h3><p>Evaluaciones psicológicas basadas en criterios sociales, culturales, económicos y demográficos.</p></div>
+			  <div class="card"><h3>Contenido Educativo</h3><p>Biblioteca de recursos para el aprendizaje continuo sobre bienestar mental y emocional.</p></div>
+			  <div class="card"><h3>Seguimiento Continuo</h3><p>Seguimiento y soporte personalizado más allá de las sesiones clínicas.</p></div>
+			  <div class="card"><h3>Acceso Ágil y Seguro</h3><p>Una experiencia rápida, confidencial y empática desde cualquier dispositivo.</p></div>
+			</div>
+        </div>
+        <div class="carousel-indicators" id="indicators-secundario"></div>
+    </div>
+	
+    <footer>
+        <p><strong>&copy; 2025 Mentana &#x1F9E0;<br>Todos los derechos reservados.</strong></p>      
+    </footer>
+	
+  </div>
+</body>
+	<script>
+	  // Script para el carrusel principal
+	  const carruselPrincipal = document.getElementById('carrusel-principal');
+	  const indicatorsPrincipalContainer = document.getElementById('indicators-principal');
+	  const totalCardsPrincipal = carruselPrincipal.querySelectorAll('.card').length;
+
+	  // Generar los indicadores para el carrusel principal
+	  for (let i = 0; i < totalCardsPrincipal; i++) {
+		const indicator = document.createElement('div');
+		indicator.classList.add('indicator');
+		indicator.addEventListener('click', () => {
+		  carruselPrincipal.scrollLeft = i * (carruselPrincipal.querySelector('.card').offsetWidth + 20);
+		});
+		indicatorsPrincipalContainer.appendChild(indicator);
+	  }
+
+	  const indicatorsPrincipal = document.querySelectorAll('#indicators-principal .indicator');
+	  if (indicatorsPrincipal.length > 0) {
+		indicatorsPrincipal[0].classList.add('active');
+	  }
+
+	  // Actualizar indicadores al hacer scroll en el carrusel principal
+	  carruselPrincipal.addEventListener('scroll', () => {
+		const anchoTarjeta = carruselPrincipal.querySelector('.card').offsetWidth + 20;
+		const currentCard = Math.round(carruselPrincipal.scrollLeft / anchoTarjeta);
+		indicatorsPrincipal.forEach((indicator, index) => {
+		  if (index === currentCard) {
+			indicator.classList.add('active');
+		  } else {
+			indicator.classList.remove('active');
+		  }
+		});
+	  });
+
+	  // Autoplay para el carrusel principal
+	  let autoplayIntervalPrincipal = setInterval(() => {
+		const anchoTarjeta = carruselPrincipal.querySelector('.card').offsetWidth + 20;
+		const currentCard = Math.round(carruselPrincipal.scrollLeft / anchoTarjeta);
+		const nextCard = (currentCard + 1) % totalCardsPrincipal;
+		carruselPrincipal.scrollLeft = nextCard * anchoTarjeta;
+	  }, 5000);
+
+	  // Script para el carrusel secundario
+	  const carruselSecundario = document.getElementById('carrusel-secundario');
+	  const indicatorsSecundarioContainer = document.getElementById('indicators-secundario');
+	  const totalCardsSecundario = carruselSecundario.querySelectorAll('.card').length;
+
+	  // Generar los indicadores para el carrusel secundario
+	  for (let i = 0; i < totalCardsSecundario; i++) {
+		const indicator = document.createElement('div');
+		indicator.classList.add('indicator');
+		indicator.addEventListener('click', () => {
+		  carruselSecundario.scrollLeft = i * (carruselSecundario.querySelector('.card').offsetWidth + 20);
+		});
+		indicatorsSecundarioContainer.appendChild(indicator);
+	  }
+
+	  const indicatorsSecundario = document.querySelectorAll('#indicators-secundario .indicator');
+	  if (indicatorsSecundario.length > 0) {
+		indicatorsSecundario[0].classList.add('active');
+	  }
+
+	  // Actualizar indicadores al hacer scroll en el carrusel secundario
+	  carruselSecundario.addEventListener('scroll', () => {
+		const anchoTarjeta = carruselSecundario.querySelector('.card').offsetWidth + 20;
+		const currentCard = Math.round(carruselSecundario.scrollLeft / anchoTarjeta);
+		indicatorsSecundario.forEach((indicator, index) => {
+		  if (index === currentCard) {
+			indicator.classList.add('active');
+		  } else {
+			indicator.classList.remove('active');
+		  }
+		});
+	  });
+
+	  // Autoplay para el carrusel secundario
+	  let autoplayIntervalSecundario = setInterval(() => {
+		const anchoTarjeta = carruselSecundario.querySelector('.card').offsetWidth + 20;
+		const currentCard = Math.round(carruselSecundario.scrollLeft / anchoTarjeta);
+		const nextCard = (currentCard + 1) % totalCardsSecundario;
+		carruselSecundario.scrollLeft = nextCard * anchoTarjeta;
+	  }, 5000); // Cambia cada 5 segundos
+	</script>
+</html>
