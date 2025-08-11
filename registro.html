@@ -307,5 +307,29 @@
       return valid;
     }
   </script>
+  <script type="module">
+  import { supabase } from './supabase.js'
+
+  const form = document.querySelector('form')
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+
+    const formData = new FormData(form)
+    const { usuario, email, password, edad, genero, educacion, estado_civil, region, comuna } =
+      Object.fromEntries(formData)
+
+    const { data, error } = await supabase.from('usuarios').insert([
+      { usuario, email, password, edad, genero, educacion, estado_civil, region, comuna }
+    ])
+
+    if (error) {
+      alert('Error al registrar: ' + error.message)
+    } else {
+      alert('Registro exitoso 🎉')
+      window.location.href = 'login.html'
+    }
+  })
+</script>
+
 </body>
 </html>
