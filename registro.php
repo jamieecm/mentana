@@ -1,9 +1,8 @@
 <?php
-// Configuración de Supabase
-$SUPABASE_URL = "db.oebyxhffvgkatfnqjkfy.subabase.co";
-$SUPABASE_KEY = "$$Mentana2025";
+$SUPABASE_URL = getenv('SUPABASE_URL'); // Guardar en Render
+$SUPABASE_KEY = getenv('SUPABASE_KEY'); // Guardar en Render
 
-// Recibir datos del formulario
+// Recibir datos
 $usuario = $_POST['usuario'] ?? '';
 $email = $_POST['email'] ?? '';
 $password = $_POST['password'] ?? '';
@@ -19,7 +18,6 @@ if (!$usuario || !$email || !$password) {
     die("Faltan campos obligatorios.");
 }
 
-// Preparar datos para enviar a Supabase
 $data = [
     'usuario' => $usuario,
     'email' => $email,
@@ -32,7 +30,6 @@ $data = [
     'comuna' => $comuna
 ];
 
-// Enviar datos a Supabase (tabla 'usuarios')
 $ch = curl_init("$SUPABASE_URL/rest/v1/usuarios");
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     "Content-Type: application/json",
