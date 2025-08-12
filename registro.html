@@ -16,7 +16,6 @@
       margin: 0;
       color: #fff;
     }
-
     .container {
       background: rgba(255, 255, 255, 0.1);
       padding: 30px;
@@ -27,24 +26,19 @@
       overflow-y: auto;
       max-height: 95vh;
       text-align: center;
-	  
     }
-
     h2 {
       text-align: center;
       margin-bottom: 20px;
     }
-
     form {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
     }
-
     .form-group {
       flex: 1 1 45%;
     }
-
     input, select {
       width: 100%;
       padding: 12px;
@@ -54,42 +48,30 @@
       background: rgba(0, 0, 0, 0.2);
       color: #fff;
       box-sizing: border-box;
-      appearance: none;
-	   border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    select {
       border: 1px solid rgba(255, 255, 255, 0.3);
     }
-
     select option {
       color: #000;
     }
-
     input::placeholder, select {
       color: rgba(255, 255, 255, 0.8);
     }
-
     input:focus, select:focus {
       background: rgba(255, 255, 255, 0.3);
       outline: none;
     }
-
     label {
       display: block;
       margin-bottom: 5px;
       font-weight: 500;
     }
-
     #comuna:disabled {
       opacity: 0.6;
       cursor: not-allowed;
     }
-
     .full-width {
       flex: 1 1 100%;
     }
-
     button {
       background: #00bcd4;
       color: #fff;
@@ -102,70 +84,44 @@
       margin-top: 15px;
       cursor: pointer;
     }
-
     button:hover {
       background: #0097a7;
     }
-
-    .note {
-      text-align: center;
-      font-size: 0.9em;
-      margin-top: 10px;
+    p {
+      margin-top: 15px;
+      font-size: 14px;
     }
-	:root {
-      --accent-primary: #56dbc4; /* verde */
-      --accent-secondary: #00bcd4; /* cian */
-      --text-light: #e0e0e0;
+    a {
+      color: #f999b7;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-   
-	 a.btn { display:inline-block; padding:14px 28px; border-radius:30px; font-weight:600; text-decoration:none; transition:background .3s ease,color .3s ease,border .3s ease; }
-    a.btn-primary {display: inline-block; width: 150px; text-align: center; margin: 5px; padding: 12px 0; border-radius: 30px; text-decoration: none; font-weight: bold; transition: background 0.3s ease; background:var(--accent-primary); color:#141e30; }
-    a.btn-primary:hover { background:#56dbc4; color:#fff; }
- p {
-            margin-top: 15px;
-            font-size: 14px;
-        }
-        a {
-            color: #f999b7;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-       
   </style>
 </head>
 <body>
   <div class="container">
     <img src="salud-mental.png" alt="Logo" width="100" height="100">
-<br><br>
-     <form method="post" action="registro.php" onsubmit="return validarFormulario()">
+    <h2>Registro</h2>
+    <form id="registroForm" method="post" action="registro.php" onsubmit="return validarFormulario()">
       <div class="form-group">
         <input type="text" name="usuario" placeholder="Usuario" required>
       </div>
-
       <div class="form-group">
         <input type="email" id="email" name="email" placeholder="Email" required>
-        <span class="error" id="email-error"></span>
       </div>
-
-      
-
-
+      <div class="form-group">
+        <input type="email" id="repetir_email" name="repetir_email" placeholder="Repite Email" required>
+      </div>
       <div class="form-group">
         <input type="password" id="password" name="password" placeholder="Contraseña" required>
-        <span class="error" id="password-error"></span>
       </div>
-
       <div class="form-group">
-        <input type="password" id="repetir_password" placeholder="Repita Contraseña" required>
-        <span class="error" id="repetir-password-error"></span>
+        <input type="password" id="repetir_password" name="repetir_password" placeholder="Repite Contraseña" required>
       </div>
-
       <div class="form-group">
         <input type="number" name="edad" placeholder="Edad" min="10" max="120" required>
       </div>
-
       <div class="form-group">
         <select name="genero" required>
           <option disabled selected>Género</option>
@@ -176,7 +132,6 @@
           <option>Prefiero no decirlo</option>
         </select>
       </div>
-
       <div class="form-group">
         <select name="educacion" required>
           <option disabled selected>Educación</option>
@@ -190,7 +145,6 @@
           <option>Postgrado</option>
         </select>
       </div>
-
       <div class="form-group">
         <select name="estado_civil" required>
           <option disabled selected>Estado Civil</option>
@@ -202,43 +156,38 @@
           <option>Viudo/a</option>
         </select>
       </div>
-
-  <div class="form-group">
-    <select name="region" id="region" onchange="cargarComunas()" required>
-      <option disabled selected>Región</option>
-      <option value="metropolitana">Región Metropolitana</option>
-      <option value="valparaiso">Valparaíso</option>
-      <option value="biobio">Biobío</option>
-      <option value="araucania">Araucanía</option>
-      <option value="ohiggins">O'Higgins</option>
-      <option value="maule">Maule</option>
-      <option value="antofagasta">Antofagasta</option>
-      <option value="coquimbo">Coquimbo</option>
-      <option value="loslagos">Los Lagos</option>
-      <option value="tarapaca">Tarapacá</option>
-      <option value="atacama">Atacama</option>
-      <option value="aysen">Aysén</option>
-      <option value="magallanes">Magallanes</option>
-      <option value="losrios">Los Ríos</option>
-      <option value="aricayparinacota">Arica y Parinacota</option>
-      <option value="ñuble">Ñuble</option>
-    </select>
-  </div>
-
-  <div class="form-group" id="comuna-group">
-    <select name="comuna" id="comuna" disabled required>
-      <option disabled selected>Comuna</option>
-    </select>
-  </div>
-
+      <div class="form-group">
+        <select name="region" id="region" onchange="cargarComunas()" required>
+          <option disabled selected>Región</option>
+          <option value="metropolitana">Región Metropolitana</option>
+          <option value="valparaiso">Valparaíso</option>
+          <option value="biobio">Biobío</option>
+          <option value="araucania">Araucanía</option>
+          <option value="ohiggins">O'Higgins</option>
+          <option value="maule">Maule</option>
+          <option value="antofagasta">Antofagasta</option>
+          <option value="coquimbo">Coquimbo</option>
+          <option value="loslagos">Los Lagos</option>
+          <option value="tarapaca">Tarapacá</option>
+          <option value="atacama">Atacama</option>
+          <option value="aysen">Aysén</option>
+          <option value="magallanes">Magallanes</option>
+          <option value="losrios">Los Ríos</option>
+          <option value="aricayparinacota">Arica y Parinacota</option>
+          <option value="ñuble">Ñuble</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <select name="comuna" id="comuna" disabled required>
+          <option disabled selected>Comuna</option>
+        </select>
+      </div>
       <div class="full-width">
-	  <p style="text-align:center;">(*) Los datos demográficos solicitados en este formulario son para<br>analizar la estructura y evolución poblacional.</p><br>
-	  <a href="registro.php" class="btn btn-primary" style="width:180px; text-align:center; display:inline-block;">Regístrate</a>
-         
-        
+        <p style="text-align:center;">(*) Los datos demográficos solicitados en este formulario son para<br>analizar la estructura y evolución poblacional.</p>
+        <button type="submit">Registrarse</button>
       </div>
     </form>
-	<p>¿Ya tienes una cuenta? <a href="login.html">Inicia sesión</a></p>
+    <p>¿Ya tienes una cuenta? <a href="login.html">Inicia sesión</a></p>
   </div>
 
   <script>
@@ -260,19 +209,15 @@
       aricayparinacota: ["Arica", "Putre"],
       ñuble: ["Chillán", "San Carlos"]
     };
-
     function cargarComunas() {
-      const regionSelect = document.getElementById("region");
+      const region = document.getElementById("region").value;
       const comunaSelect = document.getElementById("comuna");
-      const region = regionSelect.value;
-
       comunaSelect.innerHTML = '<option disabled selected>Comuna</option>';
-
       if (comunasPorRegion[region]) {
-        comunasPorRegion[region].forEach(comuna => {
+        comunasPorRegion[region].forEach(c => {
           const option = document.createElement("option");
-          option.value = comuna;
-          option.textContent = comuna;
+          option.value = c;
+          option.textContent = c;
           comunaSelect.appendChild(option);
         });
         comunaSelect.disabled = false;
@@ -280,58 +225,21 @@
         comunaSelect.disabled = true;
       }
     }
-	function validarFormulario() {
-  const email = document.getElementById("email");
-  const repetirEmail = document.getElementById("repetir_email");
-  const password = document.getElementById("password");
-  const repetirPassword = document.getElementById("repetir_password");
-
-  let valid = true;
-
-  if (email.value !== repetirEmail.value) {
-    alert("Los correos no coinciden");
-    valid = false;
-  }
-
-  if (password.value !== repetirPassword.value) {
-    alert("Las contraseñas no coinciden");
-    valid = false;
-  }
-
-  return valid;
-}
-
+    function validarFormulario() {
+      const email = document.getElementById("email").value;
+      const repetirEmail = document.getElementById("repetir_email").value;
+      const password = document.getElementById("password").value;
+      const repetirPassword = document.getElementById("repetir_password").value;
+      if (email !== repetirEmail) {
+        alert("Los correos no coinciden");
+        return false;
+      }
+      if (password !== repetirPassword) {
+        alert("Las contraseñas no coinciden");
+        return false;
+      }
+      return true;
+    }
   </script>
-  <script type="module">
-import { supabase } from './supabase.js'
-
-const form = document.querySelector('#registroForm')
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault()
-
-  if (!validarFormulario()) return
-
-  const formData = new FormData(form)
-  const dataObj = Object.fromEntries(formData)
-
-  // Evitamos enviar repetir_email y repetir_password
-  delete dataObj.repetir_email
-  delete dataObj.repetir_password
-
-  const { data, error } = await supabase
-    .from('usuarios')
-    .insert([dataObj])
-
-  if (error) {
-    alert('Error al registrar: ' + error.message)
-  } else {
-    alert('Registro exitoso 🎉')
-    window.location.href = 'login.html'
-  }
-})
-</script>
-
-
 </body>
 </html>
