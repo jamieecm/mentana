@@ -1,0 +1,127 @@
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #23bcd7, #112244);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #fff;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 12px;
+      width: 95%;
+      max-width: 700px;
+      backdrop-filter: blur(10px);
+      overflow-y: auto;
+      max-height: 95vh;
+      text-align: center;
+	  
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .form-group {
+      flex: 1 1 45%;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border: none;
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.2);
+      color: #fff;
+      box-sizing: border-box;
+      appearance: none;
+	   border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    select {
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    select option {
+      color: #000;
+    }
+
+    input::placeholder, select {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    input:focus, select:focus {
+      background: rgba(255, 255, 255, 0.3);
+      outline: none;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    #comuna:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .full-width {
+      flex: 1 1 100%;
+    }
+
+    button {
+      background: #00bcd4;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0097a7;
+    }
+
+    .note {
+      text-align: center;
+      font-size: 0.9em;
+      margin-top: 10px;
+    }
+	:root {
+      --accent-primary: #56dbc4; /* verde */
+      --accent-secondary: #00bcd4; /* cian */
+      --text-light: #e0e0e0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+   
+	 a.btn { display:inline-block; padding:14px 28px; border-radius:30px; font-weight:600; text-decoration:none; transition:background .3s ease,color .3s ease,border .3s ease; }
+    a.btn-primary {display: inline-block; width: 150px; text-align: center; margin: 5px; padding: 12px 0; border-radius: 30px; text-decoration: none; font-weight: bold; transition: background 0.3s ease; background:var(--accent-primary); color:#141e30; }
+    a.btn-primary:hover { background:#56dbc4; color:#fff; }
+ p {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        a {
+            color: #f999b7;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+       
