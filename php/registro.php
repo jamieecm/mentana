@@ -1,3 +1,64 @@
+<?php
+// registro.php
+
+$host = 'tu-host.supabase.co'; // cambia por tus datos
+$port = '5432';
+$dbname = 'tu_base_de_datos';
+$user = 'tu_usuario';
+$password = 'tu_contraseña';
+
+try {
+    $dsn = "pgsql:host=$host;port=$port;dbname=$dbname";
+    $pdo = new PDO($dsn, $user, $password, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    ]);
+} catch (PDOException $e) {
+    die("Error en la conexión: " . $e->getMessage());
+}
+
+$usuario = $_POST['usuario'] ?? '';
+$email = $_POST['email'] ?? '';
+$pass = $_POST['password'] ?? '';
+$edad = $_POST['edad'] ?? 0;
+$genero = $_POST['genero'] ?? '';
+$educacion = $_POST['educacion'] ?? '';
+$estado_civil = $_POST['estado_civil'] ?? '';
+$region = $_POST['region'] ?? '';
+$comuna = $_POST['comuna'] ?? '';
+
+if (!$usuario || !$email || !$pass) {
+    die('Faltan datos obligatorios');
+}
+
+$pass_hash = password_hash($pass, PASSWORD_DEFAULT);
+
+$sql = "INSERT INTO usuarios 
+    (usuario, email, password, edad, genero, educacion, estado_civil, region, comuna) 
+    VALUES (:usuario, :email, :password, :edad, :genero, :educacion, :estado_civil, :region, :comuna)";
+
+$stmt = $pdo->prepare($sql);
+
+try {
+    $stmt->execute([
+        ':usuario' => $usuario,
+        ':email' => $email,
+        ':password' => $pass_hash,
+        ':edad' => $edad,
+        ':genero' => $genero,
+        ':educacion' => $educacion,
+        ':estado_civil' => $estado_civil,
+        ':region' => $region,
+        ':comuna' => $comuna
+    ]);
+    echo "Registro exitoso. <a href='login.html'>Iniciar sesión</a>";
+} catch (PDOException $e) {
+    if (strpos($e->getMessage(), 'duplicate key') !== false) {
+        echo "El email ya está registrado.";
+    } else {
+        echo "Error al registrar: " . $e->getMessage();
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -234,7 +295,7 @@
 
       <div class="full-width">
 	  <p style="text-align:center;">(*) Los datos demográficos solicitados en este formulario son para<br>analizar la estructura y evolución poblacional.</p><br>
-	  <a href="registro.php" class="btn btn-primary" style="width:180px; text-align:center; display:inline-block;">Regístrate</a>
+	   <button type="submit" class="btn btn-primary" style="width:180px;">Regístrate</button>
          
         
       </div>
