@@ -282,54 +282,57 @@
       }
     }
 	function validarFormulario() {
-      const email = document.getElementById("email");
-      const repetirEmail = document.getElementById("repetir_email");
-      const password = document.getElementById("password");
-      const repetirPassword = document.getElementById("repetir_password");
+  const email = document.getElementById("email");
+  const repetirEmail = document.getElementById("repetir_email");
+  const password = document.getElementById("password");
+  const repetirPassword = document.getElementById("repetir_password");
 
-      let valid = true;
+  let valid = true;
 
-      document.getElementById("email-error").textContent = "";
-      document.getElementById("repetir-email-error").textContent = "";
-      document.getElementById("password-error").textContent = "";
-      document.getElementById("repetir-password-error").textContent = "";
+  if (email.value !== repetirEmail.value) {
+    alert("Los correos no coinciden");
+    valid = false;
+  }
 
-      if (email.value !== repetirEmail.value) {
-        document.getElementById("repetir-email-error").textContent = "Los correos no coinciden";
-        valid = false;
-      }
+  if (password.value !== repetirPassword.value) {
+    alert("Las contraseñas no coinciden");
+    valid = false;
+  }
 
-      if (password.value !== repetirPassword.value) {
-        document.getElementById("repetir-password-error").textContent = "Las contraseñas no coinciden";
-        valid = false;
-      }
+  return valid;
+}
 
-      return valid;
-    }
   </script>
   <script type="module">
-  import { supabase } from './supabase.js'
+import { supabase } from './supabase.js'
 
-  const form = document.querySelector('form')
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault()
+const form = document.querySelector('#registroForm')
 
-    const formData = new FormData(form)
-    const { usuario, email, password, edad, genero, educacion, estado_civil, region, comuna } =
-      Object.fromEntries(formData)
+form.addEventListener('submit', async (e) => {
+  e.preventDefault()
 
-    const { data, error } = await supabase.from('usuarios').insert([
-      { usuario, email, password, edad, genero, educacion, estado_civil, region, comuna }
-    ])
+  if (!validarFormulario()) return
 
-    if (error) {
-      alert('Error al registrar: ' + error.message)
-    } else {
-      alert('Registro exitoso 🎉')
-      window.location.href = 'login.html'
-    }
-  })
+  const formData = new FormData(form)
+  const dataObj = Object.fromEntries(formData)
+
+  // Evitamos enviar repetir_email y repetir_password
+  delete dataObj.repetir_email
+  delete dataObj.repetir_password
+
+  const { data, error } = await supabase
+    .from('usuarios')
+    .insert([dataObj])
+
+  if (error) {
+    alert('Error al registrar: ' + error.message)
+  } else {
+    alert('Registro exitoso 🎉')
+    window.location.href = 'login.html'
+  }
+})
 </script>
+
 
 </body>
 </html>
