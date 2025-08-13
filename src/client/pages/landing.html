@@ -3,173 +3,97 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Plataforma Inteligente de Salud Mental</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <style>
-    :root {
-      --accent-primary: #56dbc4; /* verde */
-      --accent-secondary: #00bcd4; /* cian */
-      --text-light: #e0e0e0;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #23bcd7, #112244);
-      color: var(--text-light);
-    }
-    /* ---------- COMPONENTES GENERALES ---------- */
-    a.btn { display:inline-block; padding:14px 28px; border-radius:30px; font-weight:600; text-decoration:none; transition:background .3s ease,color .3s ease,border .3s ease; }
-    a.btn-primary {display: inline-block; width: 150px; text-align: center; margin: 5px; padding: 12px 0; border-radius: 30px; text-decoration: none; font-weight: bold; transition: background 0.3s ease; background:var(--accent-primary); color:#141e30; }
-    a.btn-primary:hover { background:#56dbc4; color:#fff; }
-    a.btn-secondary { display: inline-block; width: 150px; text-align: center; margin: 5px; padding: 12px 0; border-radius: 30px; text-decoration: none; font-weight: bold; transition: background 0.3s ease; background:transparent; border:2px solid var(--accent-primary); color:var(--accent-primary); }
-    a.btn-secondary:hover { background:var(--accent-primary); color:#141e30; }
-    a.btn-outline { background:transparent; border:2px solid var(--accent-secondary); color:var(--accent-secondary); }
-    a.btn-outline:hover { background:var(--accent-secondary); color:#141e30; }
-
-    /* ---------- HEADER ---------- */
-    header { padding:70px 20px 40px; text-align:center; background:rgba(255,255,255,0.05); }
-    header h1 { font-size:2.2rem; margin-bottom:15px; }
-    header p { font-size:1.0rem; max-width:720px; margin:auto; color:var(--text-light); }
-    .cta { text-align:center; margin-top:40px; }
-
-    /* ---------- SECCIONES ---------- */
-    .container { padding:60px 20px; max-width:1100px; margin:auto; }
-    .section-title { font-size:2rem; margin-bottom:35px; text-align:center; color:var(--accent-secondary); }
-
-    /* ---------- GRID CARDS ---------- */
-    .grid-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:30px; }
-    .card { background:rgba(255,255,255,0.05); padding:25px; border-radius:12px; box-shadow:0 0 10px rgba(0,0,0,0.2); transition:transform .3s ease; text-align:center; }
-    .card:hover { transform:translateY(-5px); }
-    .card h3 { color:var(--accent-primary); margin-bottom:15px; }
-    .card p { font-size:.95rem; color:var(--text-light); }
-
-    /* ---------- FOOTER ---------- */
-    footer { text-align:center; padding:35px 20px; font-size:.9rem; color:#aaa; background:rgba(255,255,255,0.05); margin-top:50px; }
-    .social-icons a { color:var(--text-light); font-size:1.6rem; margin:0 8px; transition:color .3s ease; }
-    .social-icons a:hover { color:var(--accent-primary); }
-	
-
-.carousel-wrapper {
-  position: relative;
-  max-width: 100%;
-  overflow: hidden;
-  margin: auto;
-}
-
-.carousel-cards {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  gap: 20px;
-  padding: 20px 0;
-  -webkit-overflow-scrolling: touch;
-}
-.carousel-cards::-webkit-scrollbar {
-  display: none;
-}
-
-.card {
-  flex: 0 0 100%;
-  max-width: 100%;
-  scroll-snap-align: center;
-}
-
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  color: var(--accent-primary);
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 1;
-  padding: 10px;
-  border-radius: 50%;
-  transition: background 0.3s ease;
-}
-.carousel-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
-.carousel-btn.prev {
-  left: 10px;
-}
-.carousel-btn.next {
-  right: 10px;
-}
-
-  </style>
+  <title>Perfil de Salud Mental</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/style_index.css" />
 </head>
 <body>
-  <!-- ================= HEADER ================= -->
-  <header>
-    <img src="salud-mental.png" alt="Logo Plataforma Salud Mental" width="100" height="100" />
-    <div class="cta">
-      <h1>Mentana</h1>
-      <p>Una solución integral, empática y confiable que conecta a personas con los especialistas adecuados mediante tecnología y contenido educativo.</p><br />
-	  <section class="container" id="ofrecemos">
-    <div class="carousel-wrapper">
-  <button class="carousel-btn prev">&#8249;</button>
-  <div class="carousel-cards">
-    <div class="card"><h3>Match Inteligente</h3><p>Conectamos a cada persona con el profesional ideal según sus síntomas, perfil y contexto personal.</p></div>
-    <div class="card"><h3>Tarjeta 2</h3><p>Texto 2</p></div>
-    <div class="card"><h3>Tarjeta 3</h3><p>Texto 3</p></div>
-    <div class="card"><h3>Tarjeta 4</h3><p>Texto 4</p></div>
-    <div class="card"><h3>Tarjeta 5</h3><p>Texto 5</p></div>
-    <div class="card"><h3>Tarjeta 6</h3><p>Texto 6</p></div>
+
+  <div class="contenedor-principal-adaptado">
+    
+    <!-- Sección de perfil -->
+    <div class="perfil-header" style="text-align:center; margin-bottom:20px;">
+      <img src="../assets/foto-perfil.png" alt="Foto de Perfil" style="width:100px;height:100px;border-radius:50%;object-fit:cover;border:3px solid #4f46e5;">
+      <h2>Juan Pérez</h2>
+      <p style="color:#ccc;">Edad: 31 | Ocupación: Diseñador Gráfico</p>
+      <p style="max-width:500px;margin:auto;">Perfil preliminar de indicadores de salud mental, basado en autoevaluación y hábitos registrados.</p>
+    
+<!-- Gráficos detallados -->
+    <div class="tarjeta-contenido-principal">
+      <div class="carousel-container">
+        <div class="carousel-cards" id="carrusel-secundario">
+          <div class="card">
+            <h3>Niveles Estrés</h3>
+            <canvas id="chartEstres" height="150" width="0"></canvas>
+          </div>
+          <div class="card">
+            <h3>Niveles Sueño</h3>
+            <canvas id="chartSueno" height="180"></canvas>
+          </div>
+          <div class="card">
+            <h3>Niveles Fatiga</h3>
+            <canvas id="chartFatiga" height="180"></canvas>
+          </div>
+        </div>
+      </div>
+	  <div class="carousel-container">
+        <div class="carousel-cards" id="carrusel-principal">
+          <div class="card">
+            <h3>Notas del profesional</h3>
+      <p style="color:#ccc;">Se recomienda implementar técnicas de relajación, mejorar la higiene del sueño y realizar actividad física moderada 3 veces por semana.</p></div>
+          <div class="card">
+            <h3>Notas del profesional</h3>
+      <p style="color:#ccc;">Se recomienda implementar técnicas de relajación, mejorar la higiene del sueño y realizar actividad física moderada 3 veces por semana.</p></div>
+          <div class="card">
+            <h3>Notas del profesional</h3>
+      <p style="color:#ccc;">Se recomienda implementar técnicas de relajación, mejorar la higiene del sueño y realizar actividad física moderada 3 veces por semana.</p></div>
+          <div class="card">
+            <h3>Notas del profesional</h3>
+      <p style="color:#ccc;">Se recomienda implementar técnicas de relajación, mejorar la higiene del sueño y realizar actividad física moderada 3 veces por semana.</p></div>
+        </div>
+		
+      </div>
+	  <div class="carousel-indicators" id="indicators-principal"></div>
+    </div>
+
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+      <p><strong>&copy; 2025 Mentana 🧠<br>Todos los derechos reservados.</strong></p>
+    </footer>
+
   </div>
-  <button class="carousel-btn next">&#8250;</button>
-</div>
-    
-  </section>
-      <img src="flecha.png" alt="Flecha hacia la siguiente sección" width="50" height="50" />
-      <h2>¿Quieres saber tu perfil emocional preliminar?</h2>
-      <p>Estamos construyendo el futuro del bienestar mental.<br /><strong>Únete al viaje.</strong></p><br />
-      <a href="registro.html" class="btn btn-primary" style="width:180px; text-align:center; display:inline-block;">Regístrate</a>
-      <a href="login.html" class="btn btn-secondary" style="width:180px; text-align:center; display:inline-block;">Inicia Sesión</a>
-    </div>
-  </header>
-<section class="container" id="ofrecemos">
-<h2 class="section-title">¿Por qué Mentana?&#x1F9E0;</h2>
-    <div class="grid-cards">
-	
-      <div class="card"><h3>Match Inteligente</h3><p>Conectamos a cada persona con el profesional ideal según sus síntomas, perfil y contexto personal.</p></div>
-      <div class="card"><h3>Atención 360°</h3><p>Presencia en todas las etapas: antes, durante y después del proceso terapéutico.</p></div>
-      <div class="card"><h3>Quiz Especializados</h3><p>Evaluaciones psicológicas basadas en criterios sociales, culturales, económicos y demográficos.</p></div>
-      <div class="card"><h3>Contenido Educativo</h3><p>Biblioteca de recursos para el aprendizaje continuo sobre bienestar mental y emocional.</p></div>
-      <div class="card"><h3>Seguimiento Continuo</h3><p>Seguimiento y soporte personalizado más allá de las sesiones clínicas.</p></div>
-      <div class="card"><h3>Acceso Ágil y Seguro</h3><p>Una experiencia rápida, confidencial y empática desde cualquier dispositivo.</p></div>
-    </div>
-    
-  </section>
- 
-  <!-- ================= FOOTER ================= -->
-  <footer>
-    <p><strong>&copy; 2025 Mentana. Todos los derechos reservados.</strong></p>
-    <div class="social-icons" style="margin-top: 12px;">
-      <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook-square"></i></a>
-      <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram-square"></i></a>
-    </div>
-  </footer>
+
+  <!-- Scripts -->
+  <script src="../script_index.js"></script>
+  <script>
+    const baseConfig = (label, color) => ({
+      type: "bar",
+      data: {
+        labels: ["Muy Bajo", "Bajo", "Medio", "Alto", "Muy Alto"],
+        datasets: [{
+          label: label,
+          data: [5, 15, 40, 25, 15],
+          backgroundColor: color,
+          borderRadius: 8
+        }]
+      },
+      options: {
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { ticks: { color: "#ffffff" } },
+          y: { beginAtZero: true, ticks: { stepSize: 10, color: "#ffffff" } }
+        }
+      }
+    });
+
+    new Chart(document.getElementById("chartEstres"), baseConfig("Estrés", "#4f46e5"));
+    new Chart(document.getElementById("chartSueno"), baseConfig("Sueño", "#facc15"));
+    new Chart(document.getElementById("chartFatiga"), baseConfig("Fatiga", "#f97316"));
+  </script>
 </body>
-<script>
-  const nextBtns = document.querySelectorAll('.carousel-btn.next');
-  const prevBtns = document.querySelectorAll('.carousel-btn.prev');
-
-  nextBtns.forEach((btn, index) => {
-    btn.addEventListener('click', () => {
-      const container = btn.previousElementSibling;
-      container.scrollBy({ left: container.offsetWidth, behavior: 'smooth' });
-    });
-  });
-
-  prevBtns.forEach((btn, index) => {
-    btn.addEventListener('click', () => {
-      const container = btn.nextElementSibling;
-      container.scrollBy({ left: -container.offsetWidth, behavior: 'smooth' });
-    });
-  });
-</script>
 </html>
