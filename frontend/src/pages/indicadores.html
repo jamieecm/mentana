@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfil de Salud Mental</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../style_index.css" />
+</head>
+<body>
+
+  <div class="contenedor-principal-adaptado">
+    
+    <!-- Sección de perfil -->
+    <div class="perfil-header" style="text-align:center; margin-bottom:20px;">
+      <img src="../assets/foto-perfil.png" alt="Foto de Perfil" style="width:100px;height:100px;border-radius:50%;object-fit:cover;border:3px solid #4f46e5;">
+      <h2>Juan Pérez</h2>
+      <p style="color:#ccc;">Edad: 31 | Ocupación: Diseñador Gráfico</p>
+      <p style="max-width:500px;margin:auto;">Perfil preliminar de indicadores de salud mental, basado en autoevaluación y hábitos registrados.</p>
+    
+<!-- Gráficos detallados -->
+    <div class="tarjeta-contenido-principal">
+      <div class="carousel-container">
+        <div class="carousel-cards" id="carrusel-secundario">
+          <div class="card">
+            <h3>Niveles Estrés</h3>
+            <canvas id="chartEstres" height="150" width="0"></canvas>
+          </div>
+          <div class="card">
+            <h3>Niveles Sueño</h3>
+            <canvas id="chartSueno" height="180"></canvas>
+          </div>
+          <div class="card">
+            <h3>Niveles Fatiga</h3>
+            <canvas id="chartFatiga" height="180"></canvas>
+          </div>
+        </div>
+      </div>
+	  <div class="carousel-container">
+        <div class="carousel-cards" id="carrusel-principal">
+          <div class="card">
+            <h3>Notas del profesional</h3>
+      <p style="color:#ccc;">Se recomienda implementar técnicas de relajación, mejorar la higiene del sueño y realizar actividad física moderada 3 veces por semana.</p></div>
+          <div class="card">
+            <h3>Notas del profesional</h3>
+      <p style="color:#ccc;">Se recomienda implementar técnicas de relajación, mejorar la higiene del sueño y realizar actividad física moderada 3 veces por semana.</p></div>
+          <div class="card">
+            <h3>Notas del profesional</h3>
+      <p style="color:#ccc;">Se recomienda implementar técnicas de relajación, mejorar la higiene del sueño y realizar actividad física moderada 3 veces por semana.</p></div>
+          <div class="card">
+            <h3>Notas del profesional</h3>
+      <p style="color:#ccc;">Se recomienda implementar técnicas de relajación, mejorar la higiene del sueño y realizar actividad física moderada 3 veces por semana.</p></div>
+        </div>
+		
+      </div>
+	  <div class="carousel-indicators" id="indicators-principal"></div>
+    </div>
+
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+      <p><strong>&copy; 2025 Mentana 🧠<br>Todos los derechos reservados.</strong></p>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="../script_index.js"></script>
+  <script>
+    const baseConfig = (label, color) => ({
+      type: "bar",
+      data: {
+        labels: ["Muy Bajo", "Bajo", "Medio", "Alto", "Muy Alto"],
+        datasets: [{
+          label: label,
+          data: [5, 15, 40, 25, 15],
+          backgroundColor: color,
+          borderRadius: 8
+        }]
+      },
+      options: {
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { ticks: { color: "#ffffff" } },
+          y: { beginAtZero: true, ticks: { stepSize: 10, color: "#ffffff" } }
+        }
+      }
+    });
+
+    new Chart(document.getElementById("chartEstres"), baseConfig("Estrés", "#4f46e5"));
+    new Chart(document.getElementById("chartSueno"), baseConfig("Sueño", "#facc15"));
+    new Chart(document.getElementById("chartFatiga"), baseConfig("Fatiga", "#f97316"));
+  </script>
+</body>
+</html>
